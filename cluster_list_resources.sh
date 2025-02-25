@@ -2,7 +2,7 @@
 
 NAMESPACE=$1  # Namespace passato come argomento
 
-# Lista delle risorse principali di OpenShift
+# Lista delle risorse principali di OpenShift e Kubernetes
 RESOURCES=("Pods" "Deployments" "DeploymentConfigs" "StatefulSets" "Secrets" "ConfigMaps" "CronJobs" "Jobs" "ReplicaSets" "ReplicationControllers" "PodDisruptionBudgets"  "Services" "Routes" "Ingresses" "NetworkPolicies" "PersistentVolumes" "PersistentVolumeClaims" "BuildConfigs" "Builds" "ImageStreams" "ServiceAccounts")
 
 # Controllo se il namespace è stato dichiarato
