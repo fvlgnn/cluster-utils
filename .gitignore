@@ -1,7 +1,7 @@
 .vscode/
-ocp_resources/
-k8s_resources/
-helm_manifests/
-ocp-*-resources-list.txt
-k8s-*-resources-list.txt
+
 *.yaml
+
+helm-*-manifests/
+*-*-resources/
+*-*-resources-list.txt

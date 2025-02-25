@@ -12,25 +12,36 @@ if [ -z "$NAMESPACE" ]; then
     exit 1
 fi
 
+# Controllo se è OpenShift (oc get clusterversion funziona solo su OCP)
+if oc get clusterversion > /dev/null 2>&1; then
+    CLI="oc"
+    CLUSTER="ocp"
+    echo "Rilevato OpenShift: uso 'oc'"
+else
+    CLI="kubectl"
+    CLUSTER="k8s"
+    echo "Rilevato Kubernetes: uso 'kubectl'"
+fi
+
 echo "Lettura ed esportazione delle risorse per namespace $NAMESPACE ..."
 
-echo "╔════════════════════════════════════════════════════════════╗" > ocp-$NAMESPACE-resources-list.txt
-echo "║          Lista risorse per namespace: $NAMESPACE           " >> ocp-$NAMESPACE-resources-list.txt
-echo "╚════════════════════════════════════════════════════════════╝" >> ocp-$NAMESPACE-resources-list.txt
-echo "" >> ocp-$NAMESPACE-resources-list.txt
+echo "╔════════════════════════════════════════════════════════════╗" > $CLUSTER-$NAMESPACE-resources-list.txt
+echo "║          Lista risorse per namespace: $NAMESPACE           " >> $CLUSTER-$NAMESPACE-resources-list.txt
+echo "╚════════════════════════════════════════════════════════════╝" >> $CLUSTER-$NAMESPACE-resources-list.txt
+echo "" >> $CLUSTER-$NAMESPACE-resources-list.txt
 
 # Funzione per stampare le risorse con titolo
 function get_resources() {
     RESOURCE_TYPE=$1
-    echo "════════════════════════ $RESOURCE_TYPE ════════════════════════" >> ocp-$NAMESPACE-resources-list.txt
-	RESULT=$(oc get $RESOURCE_TYPE -n $NAMESPACE 2>/dev/null)
+    echo "════════════════════════ $RESOURCE_TYPE ════════════════════════" >> $CLUSTER-$NAMESPACE-resources-list.txt
+	RESULT=$($CLI get $RESOURCE_TYPE -n $NAMESPACE 2>/dev/null)
     if [[ -z "$RESULT" || "$RESULT" == "No resources found in"* ]]; then
-        echo "║ Nessuna risorsa disponibile per $RESOURCE_TYPE.              " >> ocp-$NAMESPACE-resources-list.txt
+        echo "║ Nessuna risorsa disponibile per $RESOURCE_TYPE.              " >> $CLUSTER-$NAMESPACE-resources-list.txt
     else
-        echo "$RESULT" >> ocp-$NAMESPACE-resources-list.txt
+        echo "$RESULT" >> $CLUSTER-$NAMESPACE-resources-list.txt
     fi
-    echo "══════════════════════════════════════════════════════════════" >> ocp-$NAMESPACE-resources-list.txt
-    echo "" >> ocp-$NAMESPACE-resources-list.txt
+    echo "══════════════════════════════════════════════════════════════" >> $CLUSTER-$NAMESPACE-resources-list.txt
+    echo "" >> $CLUSTER-$NAMESPACE-resources-list.txt
 }
 
 # Ciclo per stampare tutte le risorse

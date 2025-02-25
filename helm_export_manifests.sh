@@ -1,13 +1,14 @@
 #!/bin/sh
 
 NAMESPACE=$1  # Namespace passato come argomento
-OUTPUT_DIR="./helm_manifests"
 
 # Controllo se il namespace è stato dichiarato
 if [ -z "$NAMESPACE" ]; then
     echo "Uso: $0 <namespace>"
     exit 1
 fi
+
+OUTPUT_DIR="./helm-$NAMESPACE-manifests"
 
 # Crea la cartella per salvare i manifest
 mkdir -p "$OUTPUT_DIR"
