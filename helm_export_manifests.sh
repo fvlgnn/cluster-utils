@@ -17,7 +17,7 @@ helm list -n $NAMESPACE -o json | jq -r '.[].name' | while read -r RELEASE; do
     if [ -n "$RELEASE" ]; then
         echo "Esporto manifest per la release: $RELEASE"
 		CLEAN_RELEASE=$(echo "$RELEASE" | tr -d '[:cntrl:]' | tr -d '[:space:]')
-        helm get manifest $CLEAN_RELEASE -n $NAMESPACE > "$OUTPUT_DIR/${CLEAN_RELEASE}.yaml"
+        helm get manifest $CLEAN_RELEASE -n $NAMESPACE > "$OUTPUT_DIR/$CLEAN_RELEASE.yaml"
     fi
 done
 
