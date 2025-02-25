@@ -4,7 +4,7 @@ NAMESPACE=$1  # Namespace passato come argomento
 
 # Controllo se il namespace è stato dichiarato
 if [ -z "$NAMESPACE" ]; then
-    echo "Uso: $0 <namespace>"
+    echo "Comando: $0 <namespace>"
     exit 1
 fi
 

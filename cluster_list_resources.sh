@@ -8,7 +8,7 @@ RESOURCES=("Pods" "Deployments" "DeploymentConfigs" "StatefulSets" "Secrets" "Co
 # Controllo se il namespace è stato dichiarato
 if [ -z "$NAMESPACE" ]; then
 	echo "Nessun namespace specificato."
-    echo "Uso: sh $0 <namespace>"
+    echo "Comando: sh $0 <namespace>"
     exit 1
 fi
 
