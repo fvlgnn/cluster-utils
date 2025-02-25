@@ -2,7 +2,7 @@
 
 Strumenti e script utili per eseguire operazioni su cluster OpenShift / Kubernetes
 
-Openshift / Kubernetes resource dumper
+Nasce come Openshift / Kubernetes resource dumper.
 
 ## Descrizione
 
