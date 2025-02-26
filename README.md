@@ -1,6 +1,6 @@
-# ocp-k8s-utils
+# cluster-utils
 
-Strumenti e script utili per eseguire operazioni su cluster OpenShift / Kubernetes
+Strumenti e script utili per eseguire operazioni su cluster OpenShift (OCP) / Kubernetes (K8S)
 
 Nasce come Openshift / Kubernetes resource dumper.
 
