@@ -34,7 +34,7 @@ echo "-----------------------------------------"
 # Funzione yq per scaricare le risorse in formato YAML
 function download_resources() {
     RESOURCE_TYPE=$1
-    $CLI get $RESOURCE_TYPE -o yaml | yq '
+    $CLI get $RESOURCE_TYPE -o yaml -n $NAMESPACE | yq '
         del (
         .items.[].status, 
         .items.[].metadata.annotations, 
