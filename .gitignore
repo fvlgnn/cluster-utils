@@ -1,5 +1,8 @@
 .vscode/
 
+logs/
+*.log
+*.tmp
 *.yaml
 
 helm-*-manifests/
